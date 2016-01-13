@@ -37,9 +37,9 @@ func main() {
 	tomlfile := ""
 	message := ""
 	channel := ""
-	flag.StringVar(&tomlfile, "config", "cli2slack.conf", "Location of the config file")
-	flag.StringVar(&channel, "c", "testen", "Channel to send message to")
-	flag.StringVar(&message, "m", "No Message :)", "Message to send to slack channel")
+	flag.StringVar(&tomlfile, "config", "/etc/cli2slack.conf", "Location of the config file")
+	flag.StringVar(&channel, "c", "general", "Channel to send message to")
+	flag.StringVar(&message, "m", "cli2slack message", "Message to send to slack channel")
 	flag.Parse()
 
 	config, err := toml.LoadFile(tomlfile)
@@ -50,8 +50,6 @@ func main() {
 		config_Url := config.Get("url").(string)
 		config_username := config.Get("username").(string)
 		config_iconEmoji := config.Get("iconEmoji").(string)
-
-		//fmt.Println("Url is ", Url, ". Username is ", username, ". Channel is ", channel)
 
 		h, e := os.Hostname()
 		if e != nil {
